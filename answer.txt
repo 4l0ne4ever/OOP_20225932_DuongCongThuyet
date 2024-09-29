@@ -1,0 +1,461 @@
+2.2.1 (HelloWorld.java)
+package lab01;
+public class HelloWorld {
+
+    public static void main(String[] args) {
+        System.out.println("Xin chao \n cac ban!");
+        System.out.println("Hello \tWorld!");
+    }
+}
+
+2.2.2 (FirstDialog.java)
+package lab01;
+
+import javax.swing.JOptionPane;
+
+public class FirstDialog {
+
+    public static void main(String[] args) {
+        JOptionPane.showMessageDialog(null, "Hello World! How are you?");
+        System.exit(0);
+    }
+}
+
+2.2.3 (HelloNameDialog.java)
+package lab01;
+
+import javax.swing.JOptionPane;
+
+public class HelloNameDialog {
+    public static void main(String[] args) {
+        String result;
+        result = JOptionPane.showInputDialog(null, "Please enter your name: ");
+        JOptionPane.showMessageDialog(null, "Hi " + result + "!");
+        System.exit(0);
+    }
+
+}
+
+2.2.4 (ShowTwoNumbers.java)
+package lab01;
+
+import javax.swing.JOptionPane;
+
+public class ShowTwoNumbers {
+    public static void main(String[] args) {
+        String strNum1, strnNum2;
+        String strNotification = "You've just entered: ";
+        strNum1 = JOptionPane.showInputDialog(null, "Please enter your first number: ", "Input the first number",
+                JOptionPane.INFORMATION_MESSAGE);
+        strNotification += strNum1 + " and ";
+        strnNum2 = JOptionPane.showInputDialog(null, "Please enter your second number: ", "Input the second number",
+                JOptionPane.INFORMATION_MESSAGE);
+        strNotification += strnNum2;
+        JOptionPane.showMessageDialog(null, strNotification, "Show two numbers", JOptionPane.INFORMATION_MESSAGE);
+        System.exit(0);
+    }
+}
+
+2.2.5 (Math.java)
+package lab01;
+
+import javax.swing.JOptionPane;
+
+public class Math {
+    public static void main(String[] args) {
+        double num1, num2;
+        num1 = Double.parseDouble(JOptionPane.showInputDialog(null, "Enter your first number: "));
+        num2 = Double.parseDouble(JOptionPane.showInputDialog(null, "Enter your second number: "));
+        double sum = num1 + num2;
+        double difference = num1 - num2;
+        double product = num1 * num2;
+        double quotient = num1 / num2;
+        JOptionPane.showMessageDialog(null,
+                "Sum: " + sum + "\nDifference: " + difference + "\nProduct: " + product + "\nQuotient: " + quotient);
+        System.exit(0);
+    }
+}
+
+2.2.6 (EquationSolver.java)
+package lab01;
+
+import java.util.Scanner;
+
+public class EquationSolver {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Choose the type of equation to solve:");
+        System.out.println("1. First-degree equation with one variable");
+        System.out.println("2. System of first-degree equations with two variables");
+        System.out.println("3. Second-degree equation with one variable");
+        int choice = scanner.nextInt();
+
+        switch (choice) {
+            case 1:
+                solveLinearEquation(scanner);
+                break;
+            case 2:
+                solveLinearSystem(scanner);
+                break;
+            case 3:
+                solveQuadraticEquation(scanner);
+                break;
+            default:
+                System.out.println("Invalid choice.");
+        }
+        scanner.close();
+    }
+
+    private static void solveLinearEquation(Scanner scanner) {
+        System.out.println("Solving ax + b = 0");
+        System.out.print("Enter a: ");
+        double a = scanner.nextDouble();
+        System.out.print("Enter b: ");
+        double b = scanner.nextDouble();
+
+        if (a == 0) {
+            System.out.println("a cannot be 0.");
+        } else {
+            double x = -b / a;
+            System.out.println("The solution is x = " + x);
+        }
+    }
+
+    private static void solveLinearSystem(Scanner scanner) {
+        System.out.println("Solving system of equations:");
+        System.out.println("a11 * x1 + a12 * x2 = b1");
+        System.out.println("a21 * x1 + a22 * x2 = b2");
+
+        System.out.print("Enter a11: ");
+        double a11 = scanner.nextDouble();
+        System.out.print("Enter a12: ");
+        double a12 = scanner.nextDouble();
+        System.out.print("Enter a21: ");
+        double a21 = scanner.nextDouble();
+        System.out.print("Enter a22: ");
+        double a22 = scanner.nextDouble();
+        System.out.print("Enter b1: ");
+        double b1 = scanner.nextDouble();
+        System.out.print("Enter b2: ");
+        double b2 = scanner.nextDouble();
+
+        double D = a11 * a22 - a21 * a12;
+        double D1 = b1 * a22 - b2 * a12;
+        double D2 = a11 * b2 - a21 * b1;
+
+        if (D == 0) {
+            if (D1 == 0 && D2 == 0) {
+                System.out.println("The system has infinitely many solutions.");
+            } else {
+                System.out.println("The system has no solution.");
+            }
+        } else {
+            double x1 = D1 / D;
+            double x2 = D2 / D;
+            System.out.println("The solution is x1 = " + x1 + ", x2 = " + x2);
+        }
+    }
+
+    private static void solveQuadraticEquation(Scanner scanner) {
+        System.out.println("Solving ax^2 + bx + c = 0");
+        System.out.print("Enter a: ");
+        double a = scanner.nextDouble();
+        System.out.print("Enter b: ");
+        double b = scanner.nextDouble();
+        System.out.print("Enter c: ");
+        double c = scanner.nextDouble();
+
+        if (a == 0) {
+            System.out.println("a cannot be 0.");
+        } else {
+            double discriminant = b * b - 4 * a * c;
+            if (discriminant > 0) {
+                double x1 = (-b + java.lang.Math.sqrt(discriminant)) / (2 * a);
+                double x2 = (-b - java.lang.Math.sqrt(discriminant)) / (2 * a);
+                System.out.println("The solutions are x1 = " + x1 + ", x2 = " + x2);
+            } else if (discriminant == 0) {
+                double x = -b / (2 * a);
+                System.out.println("The solution is x = " + x);
+            } else {
+                System.out.println("The equation has no real roots.");
+            }
+        }
+    }
+}
+
+6.1 (ChoosingOption.java)
+package lab01;
+
+import javax.swing.JOptionPane;
+
+public class ChoosingOption {
+    public static void main(String[] args) {
+        int option = JOptionPane.showConfirmDialog(null, "Do you want to change to the first class ticket? ");
+        JOptionPane.showMessageDialog(null, "You've chosen: " + (option == JOptionPane.YES_OPTION ? "Yes" : "No"));
+        System.exit(0);
+    }
+}
+
+Questions:
+-	What happens if users choose “Cancel”?
+    It returns the result "You've chosen: No"
+-	How to customize the options to users, e.g. only two options: “Yes” and “No”, OR “I do” and “I don’t” (Suggestion: Use Javadocs or using Eclipse/Netbean IDE help). 
+    To customize the options to users, we can use the overloaded method allows we to specify the options like this code under: 
+package lab01;
+
+import javax.swing.JOptionPane;
+
+public class ChoosingOption {
+    public static void main(String[] args) {
+        Object[] options = {"I do", "I don't"};
+        int option = JOptionPane.showOptionDialog(null, 
+                                                  "Do you want to change to the first class ticket?", 
+                                                  "Choose an option", 
+                                                  JOptionPane.YES_NO_OPTION, 
+                                                  JOptionPane.QUESTION_MESSAGE, 
+                                                  null, 
+                                                  options, 
+                                                  options[0]);
+        JOptionPane.showMessageDialog(null, "You've chosen: " + (option == JOptionPane.YES_OPTION ? "I do" : "I don't"));
+        System.exit(0);
+    }
+}
+
+6.2 (InputFromKeyboard.java)
+package lab01;
+
+import java.util.Scanner;
+
+public class InputFromKeyboard {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("What's your name? ");
+        String strName = scanner.nextLine();
+        System.out.println("How old are your? ");
+        int age = scanner.nextInt();
+        System.out.println("How tall are you (m)? ");
+        double height = scanner.nextDouble();
+        System.out.println("Mrs/Ms. " + strName + ", " + age + " years old. " + "Your height is: " + height + "m.");
+        scanner.close();
+        System.exit(0);
+    }
+}
+
+6.3 (Triangle.java)
+package lab01;
+
+import java.util.Scanner;
+
+public class Triangle {
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        System.out.println("Enter the height of the triangle: ");
+        int n = scan.nextInt();
+        for (int i = 1; i <= n; i++) {
+            for (int j = 0; j < n - i; j++) {
+                System.out.print(" ");
+            }
+            for (int k = 0; k < 2 * i - 1; k++) {
+                System.out.print("*");
+            }
+            System.out.println();
+        }
+        scan.close();
+    }
+}
+
+6.4 (DaysInMonth.java)
+package lab01;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
+
+public class DaysInMonth {
+    private static final Map<String, Integer> monthMap = new HashMap<>();
+    private static final int[] daysInMonth = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
+
+    static {
+        monthMap.put("january", 1);
+        monthMap.put("jan.", 1);
+        monthMap.put("jan", 1);
+        monthMap.put("1", 1);
+        monthMap.put("february", 2);
+        monthMap.put("feb.", 2);
+        monthMap.put("feb", 2);
+        monthMap.put("2", 2);
+        monthMap.put("march", 3);
+        monthMap.put("mar.", 3);
+        monthMap.put("mar", 3);
+        monthMap.put("3", 3);
+        monthMap.put("april", 4);
+        monthMap.put("apr.", 4);
+        monthMap.put("apr", 4);
+        monthMap.put("4", 4);
+        monthMap.put("may", 5);
+        monthMap.put("5", 5);
+        monthMap.put("june", 6);
+        monthMap.put("jun", 6);
+        monthMap.put("6", 6);
+        monthMap.put("july", 7);
+        monthMap.put("jul", 7);
+        monthMap.put("7", 7);
+        monthMap.put("august", 8);
+        monthMap.put("aug.", 8);
+        monthMap.put("aug", 8);
+        monthMap.put("8", 8);
+        monthMap.put("september", 9);
+        monthMap.put("sep.", 9);
+        monthMap.put("sep", 9);
+        monthMap.put("9", 9);
+        monthMap.put("october", 10);
+        monthMap.put("oct.", 10);
+        monthMap.put("oct", 10);
+        monthMap.put("10", 10);
+        monthMap.put("november", 11);
+        monthMap.put("nov.", 11);
+        monthMap.put("nov", 11);
+        monthMap.put("11", 11);
+        monthMap.put("december", 12);
+        monthMap.put("dec.", 12);
+        monthMap.put("dec", 12);
+        monthMap.put("12", 12);
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int year = 0;
+        int month = 0;
+        boolean input = false;
+
+        while (!input) {
+            System.out.print("Enter month: ");
+            String monthInput = scanner.next().toLowerCase();
+            System.out.print("Enter year: ");
+            if (scanner.hasNextInt()) {
+                year = scanner.nextInt();
+                if (year >= 0) {
+                    month = monthMap.getOrDefault(monthInput, -1);
+                    if (month != -1) {
+                        input = true;
+                    } else {
+                        System.out.println("Invalid month");
+                    }
+                } else {
+                    System.out.println("Invalid year");
+                }
+            } else {
+                System.out.println("Invalid year");
+                scanner.next();
+            }
+        }
+
+        int days = getDaysInMonth(month, year);
+        System.out.println("Number of days: " + days);
+        scanner.close();
+    }
+
+    private static boolean isLeapYear(int year) {
+        return (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0);
+    }
+
+    private static int getDaysInMonth(int month, int year) {
+        if (month == 2 && isLeapYear(year)) {
+            return 29;
+        }
+        return daysInMonth[month - 1];
+    }
+}
+
+6.5 (Array.java)
+package lab01;
+
+import java.util.Arrays;
+import java.util.Scanner;
+
+public class Array {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter the size of the array: ");
+        int n = scanner.nextInt();
+        int[] arr = new int[n];
+        System.out.println("Enter the elements: ");
+        for (int i = 0; i < n; i++) {
+            arr[i] = scanner.nextInt();
+        }
+        int sum = 0;
+        for (int i = 0; i < n; i++) {
+            sum += arr[i];
+        }
+        double average = (double) sum / n;
+        SortArray(arr);
+        System.out.println("Sum: " + sum);
+        System.out.println("Average: " + average);
+        System.out.println("Sorted array: " + Arrays.toString(arr));
+        scanner.close();
+        System.exit(0);
+    }
+
+    private static void SortArray(int[] arr) {
+        int temp;
+        for (int i = 0; i < arr.length; i++) {
+            for (int j = i + 1; j < arr.length; j++) {
+                if (arr[i] > arr[j]) {
+                    temp = arr[i];
+                    arr[i] = arr[j];
+                    arr[j] = temp;
+                }
+            }
+        }
+    }
+}
+
+6.6 (AddTwoMatrices.java)
+package lab01;
+
+import java.util.Scanner;
+
+public class AddTwoMatrices {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter first row and first col: ");
+        int row1 = scanner.nextInt();
+        int col1 = scanner.nextInt();
+        System.out.println("Enter first matrix: ");
+        int[][] matrix1 = new int[row1][col1];
+        for (int i = 0; i < row1; i++) {
+            for (int j = 0; j < col1; j++) {
+                matrix1[i][j] = scanner.nextInt();
+            }
+        }
+        System.out.println("Enter second row and second col: ");
+        int row2 = scanner.nextInt();
+        int col2 = scanner.nextInt();
+        System.out.println("Enter second matrix: ");
+        int[][] matrix2 = new int[row2][col2];
+        for (int i = 0; i < row2; i++) {
+            for (int j = 0; j < col2; j++) {
+                matrix2[i][j] = scanner.nextInt();
+            }
+        }
+        if (row1 != row2 || col1 != col2) {
+            System.out.println("Matrices cannot be added");
+            scanner.close();
+            System.exit(0);
+        }
+        int[][] sum = new int[row1][col1];
+        for (int i = 0; i < row1; i++) {
+            for (int j = 0; j < col1; j++) {
+                sum[i][j] = matrix1[i][j] + matrix2[i][j];
+            }
+        }
+        System.out.println("Sum of matrices: ");
+        for (int i = 0; i < row1; i++) {
+            for (int j = 0; j < col1; j++) {
+                System.out.print(sum[i][j] + " ");
+            }
+            System.out.println();
+        }
+        scanner.close();
+    }
+}
