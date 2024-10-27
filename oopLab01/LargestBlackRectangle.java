@@ -1,4 +1,4 @@
-package lab01;
+package oopLab01;
 
 import java.util.Scanner;
 import java.util.Stack;
