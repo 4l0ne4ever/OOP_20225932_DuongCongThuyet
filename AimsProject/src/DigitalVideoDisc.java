@@ -44,10 +44,12 @@ public class DigitalVideoDisc {
     this.title = title;
     this.category = category;
     this.cost = cost;
+    this.id = ++nbDigitalVideoDiscs;
   }
 
   public DigitalVideoDisc(String title) {
     this.title = title;
+    this.id = ++nbDigitalVideoDiscs;
   }
 
   public DigitalVideoDisc(String title, String category, String director, float cost) {
@@ -93,5 +95,14 @@ public class DigitalVideoDisc {
 
   public void setCost(float cost) {
     this.cost = cost;
+  }
+
+  @Override
+  public String toString() {
+    return this.id + ". DVD: " + this.title +
+        " - Category: " + this.category +
+        " - Director: " + this.title +
+        " - DVD length: " + this.length +
+        " - Cost: " + this.cost + "$";
   }
 }
