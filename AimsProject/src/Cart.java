@@ -5,6 +5,7 @@ import java.util.Arrays;
 public class Cart {
   public static final int MAX_NUMBERS_ORDERED = 20;
   private DigitalVideoDisc quantity[] = new DigitalVideoDisc[MAX_NUMBERS_ORDERED];
+  private int qtyOrdered = 0;
 
   public void browseDVD() {
     Arrays.sort(quantity, (a, b) -> {
@@ -29,6 +30,23 @@ public class Cart {
       }
     }
     System.out.println("The cart is almost full");
+  }
+
+  public void addDigitalVideoDisc(DigitalVideoDisc[] dvdList) {
+    if (dvdList.length + qtyOrdered > MAX_NUMBERS_ORDERED) {
+      System.out.println("The cart is almost full!");
+    } else {
+      for (DigitalVideoDisc dvd : dvdList) {
+        quantity[qtyOrdered] = dvd;
+        System.out.println(dvd.getTitle() + " has been added!");
+        qtyOrdered++;
+      }
+    }
+  }
+
+  public void addDigitalVideoDisc(DigitalVideoDisc dvd1, DigitalVideoDisc dvd2) {
+    DigitalVideoDisc[] dvdList = { dvd1, dvd2 };
+    addDigitalVideoDisc(dvdList);
   }
 
   public void removeDigitalVideoDisc(DigitalVideoDisc disc) {
