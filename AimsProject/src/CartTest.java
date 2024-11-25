@@ -15,6 +15,10 @@ public class CartTest {
         cart.addDigitalVideoDisc(dvd3);
 
         cart.print();
-
+        cart.searchByID(2);
+        cart.searchByTitle("Lion King");
+        cart.searchByCategory("Sci-fic");
+        cart.searchByPrice(2000);
+        cart.searchByAmongPrice(1900, 2000);
     }
 }
