@@ -1,6 +1,8 @@
-package AimsProject.src;
+package AimsProject.src.hust.soict.cybersec.aims.cart;
 
 import java.util.Arrays;
+
+import AimsProject.src.hust.soict.cybersec.aims.disc.DigitalVideoDisc;
 
 public class Cart {
   public static final int MAX_NUMBERS_ORDERED = 20;
@@ -82,6 +84,20 @@ public class Cart {
     }
     if (!found) {
       System.out.println("No DVD found with id: " + id);
+    }
+  }
+
+  public void searchByTitle(String title) {
+    boolean found = false;
+    for (DigitalVideoDisc disc : quantity) {
+      if (disc != null && disc.getTitle() == title) {
+        System.out.println("Found DVD: " + disc.getTitle() + " - " + disc.getCategory() + " - "
+            + disc.getDirector() + " - " + disc.getLength() + ": " + disc.getCost() + " $");
+        found = true;
+      }
+    }
+    if (!found) {
+      System.out.println("No DVD found with id: " + title);
     }
   }
 

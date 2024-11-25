@@ -1,7 +1,9 @@
-package AimsProject.src;
+package AimsProject.src.hust.soict.cybersec.aims.store;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import AimsProject.src.hust.soict.cybersec.aims.disc.DigitalVideoDisc;
 
 public class Store {
     private List<DigitalVideoDisc> itemsInStore;
@@ -17,7 +19,7 @@ public class Store {
 
     public void removeDVD(DigitalVideoDisc dvd) {
         boolean isRemoved = itemsInStore.remove(dvd);
-        if (removed) {
+        if (isRemoved) {
             System.out.println(dvd.getTitle() + " has been removed from the store.");
         } else {
             System.out.println(dvd.getTitle() + " is not found in the store.");

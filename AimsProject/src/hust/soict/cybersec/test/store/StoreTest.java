@@ -1,4 +1,7 @@
-package AimsProject.src;
+package AimsProject.src.hust.soict.cybersec.test.store;
+
+import AimsProject.src.hust.soict.cybersec.aims.disc.DigitalVideoDisc;
+import AimsProject.src.hust.soict.cybersec.aims.store.Store;
 
 public class StoreTest {
     public static void main(String[] args) {

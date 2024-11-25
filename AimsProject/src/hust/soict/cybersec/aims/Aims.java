@@ -1,4 +1,7 @@
-package AimsProject.src;
+package AimsProject.src.hust.soict.cybersec.aims;
+
+import AimsProject.src.hust.soict.cybersec.aims.cart.Cart;
+import AimsProject.src.hust.soict.cybersec.aims.disc.DigitalVideoDisc;
 
 public class Aims {
   public static void main(String[] args) {

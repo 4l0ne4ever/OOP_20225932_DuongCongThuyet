@@ -1,4 +1,7 @@
-package AimsProject.src;
+package AimsProject.src.hust.soict.cybersec.test.cart;
+
+import AimsProject.src.hust.soict.cybersec.aims.cart.Cart;
+import AimsProject.src.hust.soict.cybersec.aims.disc.DigitalVideoDisc;
 
 public class CartTest {
     public static void main(String[] args) {
@@ -15,7 +18,7 @@ public class CartTest {
         cart.addDigitalVideoDisc(dvd3);
 
         cart.print();
-        cart.searchByID(2);
+        cart.searchById(2);
         cart.searchByTitle("Lion King");
         cart.searchByCategory("Sci-fic");
         cart.searchByPrice(2000);
