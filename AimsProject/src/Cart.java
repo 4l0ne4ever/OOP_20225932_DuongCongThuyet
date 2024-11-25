@@ -71,6 +71,62 @@ public class Cart {
     return total;
   }
 
+  public void searchById(int id) {
+    boolean found = false;
+    for (DigitalVideoDisc disc : quantity) {
+      if (disc != null && disc.getId() == id) {
+        System.out.println("Found DVD: " + disc.getTitle() + " - " + disc.getCategory() + " - "
+            + disc.getDirector() + " - " + disc.getLength() + ": " + disc.getCost() + " $");
+        found = true;
+      }
+    }
+    if (!found) {
+      System.out.println("No DVD found with id: " + id);
+    }
+  }
+
+  public void searchByCategory(String category) {
+    boolean found = false;
+    for (DigitalVideoDisc disc : quantity) {
+      if (disc != null && disc.getCategory().equalsIgnoreCase(category)) {
+        System.out.println("Found DVD: " + disc.getTitle() + " - " + disc.getCategory() + " - "
+            + disc.getDirector() + " - " + disc.getLength() + ": " + disc.getCost() + " $");
+        found = true;
+      }
+    }
+    if (!found) {
+      System.out.println("No DVD found with category: " + category);
+    }
+  }
+
+  public void searchByPrice(float price) {
+    boolean found = false;
+    for (DigitalVideoDisc disc : quantity) {
+      if (disc != null && disc.getCost() == price) {
+        System.out.println("Found DVD: " + disc.getTitle() + " - " + disc.getCategory() + " - "
+            + disc.getDirector() + " - " + disc.getLength() + ": " + disc.getCost() + " $");
+        found = true;
+      }
+    }
+    if (!found) {
+      System.out.println("No DVD found with price: " + price);
+    }
+  }
+
+  public void searchByAmongPrice(float min, float max) {
+    boolean found = false;
+    for (DigitalVideoDisc disc : quantity) {
+      if (disc != null && (disc.getCost() >= min && disc.getCost() <= max)) {
+        System.out.println("Found DVD: " + disc.getTitle() + " - " + disc.getCategory() + " - "
+            + disc.getDirector() + " - " + disc.getLength() + ": " + disc.getCost() + " $");
+        found = true;
+      }
+    }
+    if (!found) {
+      System.out.println("No DVD found among price: " + min + " and " + max);
+    }
+  }
+
   public void print() {
     System.out.println("***********************CART**********************");
     System.out.println("Ordered Items:");
