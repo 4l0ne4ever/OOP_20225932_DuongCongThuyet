@@ -1,4 +1,4 @@
-package oopLab01;
+package OtherProjects.oopLab01;
 
 import java.util.Scanner;
 
