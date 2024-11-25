@@ -63,4 +63,8 @@ public class DigitalVideoDisc {
   public void setDate(Date date) {
     this.date = date;
   }
+
+  public void setTitle(String title) {
+    this.title = title;
+  }
 }
