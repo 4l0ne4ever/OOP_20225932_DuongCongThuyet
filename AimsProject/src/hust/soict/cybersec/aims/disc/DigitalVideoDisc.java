@@ -1,4 +1,4 @@
-package AimsProject.src;
+package AimsProject.src.hust.soict.cybersec.aims.disc;
 
 import java.util.Date;
 

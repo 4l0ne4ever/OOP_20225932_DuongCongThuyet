@@ -1,4 +1,4 @@
-package OtherProjects.oopLab01;
+package OtherProjects.src.hust.soict.cybersec.oopLab01;
 
 /**
  * HelloWorld
