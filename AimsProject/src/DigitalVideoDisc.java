@@ -1,4 +1,4 @@
-package AimsProject;
+package AimsProject.src;
 
 import java.util.Date;
 
