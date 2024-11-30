@@ -1,51 +1,45 @@
 package AimsProject.src.hust.soict.dsai.aims.store;
 
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Optional;
 
-import AimsProject.src.hust.soict.dsai.aims.disc.DigitalVideoDisc;
+import AimsProject.src.hust.soict.dsai.aims.media.Media;
 
 public class Store {
-    private List<DigitalVideoDisc> itemsInStore;
 
-    public Store() {
-        itemsInStore = new ArrayList<>();
-    }
+    private ArrayList<Media> itemsInStore = new ArrayList<>();
 
-    public void addDvd(DigitalVideoDisc dvd) {
-        itemsInStore.add(dvd);
-
-    }
-
-    public void removeDVD(DigitalVideoDisc dvd) {
-        boolean isRemoved = itemsInStore.remove(dvd);
-        if (isRemoved) {
-            System.out.println(dvd.getTitle() + " has been removed from the store.");
+    public void addMedia(Media media) {
+        if (itemsInStore.stream().anyMatch(m -> m.equals(media))) {
+            System.out.println("The media " + media.getTitle() + " is already in the store!");
         } else {
-            System.out.println(dvd.getTitle() + " is not found in the store.");
+            itemsInStore.add(media);
+            System.out.println("The media " + media.getTitle() + " has been added to the store.");
+        }
+    }
+
+    public void removeMedia(Media media) {
+        if (itemsInStore.removeIf(m -> m.equals(media))) {
+            System.out.println("The media " + media.getTitle() + " has been removed from the store.");
+        } else {
+            System.out.println("The media " + media.getTitle() + " is not in the store!");
         }
     }
 
     public void print() {
-        for (int i = 0; i < itemsInStore.size(); i++) {
-            System.out.println(i + 1 + ". " + itemsInStore.get(i));
+        if (itemsInStore.isEmpty()) {
+            System.out.println("The store is empty!");
+        } else {
+            System.out.println("********************STORE INVENTORY********************");
+            itemsInStore.forEach(System.out::println);
+            System.out.println("********************************************************");
         }
     }
 
-    public int getTotalItems() {
-        return itemsInStore.size();
-    }
-
-    public DigitalVideoDisc findDVDByTitle(String title) {
-        for (DigitalVideoDisc dvd : itemsInStore) {
-            if (dvd.getTitle().equalsIgnoreCase(title)) {
-                return dvd;
-            }
-        }
-        return null;
-    }
-
-    public List<DigitalVideoDisc> getItemsInStore() {
-        return new ArrayList<>(itemsInStore);
+    public Media search(String title) {
+        Optional<Media> media = itemsInStore.stream()
+                .filter(m -> m.getTitle().equals(title))
+                .findFirst();
+        return media.orElse(null);
     }
 }
