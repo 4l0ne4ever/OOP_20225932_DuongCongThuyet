@@ -1,7 +1,7 @@
 package AimsProject.src.hust.soict.dsai.test.cart;
 
 import AimsProject.src.hust.soict.dsai.aims.cart.Cart;
-import AimsProject.src.hust.soict.dsai.aims.disc.DigitalVideoDisc;
+import AimsProject.src.hust.soict.dsai.aims.media.DigitalVideoDisc;
 
 public class CartTest {
     public static void main(String[] args) {
@@ -9,19 +9,19 @@ public class CartTest {
         Cart cart = new Cart();
 
         DigitalVideoDisc dvd1 = new DigitalVideoDisc("Lion King", "Animation", "Roger Allers", 87, 19.95f);
-        cart.addDigitalVideoDisc(dvd1);
+        cart.addMedia(dvd1);
 
         DigitalVideoDisc dvd2 = new DigitalVideoDisc("Star War", "Sci-fic", "Geogre Lucas", 87, 22.42f);
-        cart.addDigitalVideoDisc(dvd2);
+        cart.addMedia(dvd2);
 
         DigitalVideoDisc dvd3 = new DigitalVideoDisc("Alien", "Sci-fic", 14.2f);
-        cart.addDigitalVideoDisc(dvd3);
+        cart.addMedia(dvd3);
 
         cart.print();
-        cart.searchById(2);
+        cart.searchByID(2);
         cart.searchByTitle("Lion King");
         cart.searchByCategory("Sci-fic");
         cart.searchByPrice(2000);
-        cart.searchByAmongPrice(1900, 2000);
+        cart.searchByPrice(1900, 2000);
     }
 }
