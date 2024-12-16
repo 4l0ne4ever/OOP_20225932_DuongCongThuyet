@@ -1,7 +1,9 @@
 package AimsProject.src.hust.soict.dsai.aims.media;
 
+import java.time.Duration;
 import java.util.Comparator;
-import java.util.Objects;
+
+import AimsProject.src.hust.soict.dsai.aims.exception.PlayerException;
 
 public abstract class Media implements Comparable<Media> {
 
@@ -15,6 +17,7 @@ public abstract class Media implements Comparable<Media> {
     private String category;
     private float cost;
 
+    // Constructor
     public Media(String title) {
         this.title = title;
         this.id = ++nbMedia;
@@ -61,6 +64,16 @@ public abstract class Media implements Comparable<Media> {
         System.out.println("Playing media");
     }
 
+    public String playGUI() throws PlayerException {
+        return "Playing media";
+    }
+
+    public String formatDuration(int durationInSeconds) {
+        Duration duration = Duration.ofSeconds(durationInSeconds);
+        return String.format("%02d:%02d", duration.toMinutes(),
+                duration.minusMinutes(duration.toMinutes()).getSeconds());
+    }
+
     @Override
     public boolean equals(Object obj) {
         if (obj == this) {
@@ -69,8 +82,7 @@ public abstract class Media implements Comparable<Media> {
         if (!(obj instanceof Media)) {
             return false;
         }
-        Media other = (Media) obj;
-        return Objects.equals(this.getTitle(), other.getTitle());
+        return ((Media) obj).getTitle() == this.getTitle();
     }
 
     @Override

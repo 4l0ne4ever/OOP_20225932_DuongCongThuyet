@@ -2,15 +2,19 @@ package AimsProject.src.hust.soict.dsai.aims.media;
 
 import java.util.*;
 
+import AimsProject.src.hust.soict.dsai.aims.exception.PlayerException;
+
 public class CompactDisc extends Media implements Playable {
 
     private String artist;
     private List<Track> tracks = new ArrayList<Track>();;
 
+    // Getter method
     public String getArtist() {
         return artist;
     }
 
+    // Constructor
     public CompactDisc(String title) {
         super(title);
     }
@@ -20,6 +24,7 @@ public class CompactDisc extends Media implements Playable {
         this.artist = artist;
     }
 
+    // Add and remove track
     public void addTrack(Track track) {
         if (!tracks.contains(track)) {
             tracks.add(track);
@@ -47,6 +52,7 @@ public class CompactDisc extends Media implements Playable {
         return totalLength;
     }
 
+    // Play method
     @Override
     public void play() {
         System.out.println("Playing CD: " + this.getTitle());
@@ -60,8 +66,27 @@ public class CompactDisc extends Media implements Playable {
     public String toString() {
         return this.getId() + " - CD: " + this.getTitle() +
                 " - Category: " + this.getCategory() +
-                " - Artist" + this.getArtist() +
+                " - Artist: " + this.getArtist() +
                 " - Length: " + this.getLength() + " seconds" +
                 " - Cost: " + this.getCost() + "$";
+    }
+
+    public String playGUI() throws PlayerException {
+        if (this.getLength() > 0) {
+            StringBuilder output = new StringBuilder();
+            output.append("Playing CD: ").append(this.getTitle()).append("\n")
+                    .append("CD length: ").append(formatDuration(this.getLength())).append("\n\n");
+            for (Track track : tracks) {
+                try {
+                    output.append(track.playGUI()).append("\n");
+                } catch (PlayerException e) {
+                    System.err.println("Error playing track: " + track.getTitle());
+                    throw e;
+                }
+            }
+            return output.toString();
+        } else {
+            throw new PlayerException("ERROR: CD length is non-positive!");
+        }
     }
 }
