@@ -1,7 +1,10 @@
 package AimsProject.src.hust.soict.dsai.aims.media;
 
+import AimsProject.src.hust.soict.dsai.aims.exception.PlayerException;
+
 public class DigitalVideoDisc extends Disc implements Playable {
 
+  // Constructor
   public DigitalVideoDisc(String title) {
     super(title);
   }
@@ -32,5 +35,27 @@ public class DigitalVideoDisc extends Disc implements Playable {
   public void play() {
     System.out.println("Playing DVD: " + this.getTitle());
     System.out.println("DVD length: " + this.getLength());
+    if (this.getLength() <= 0) {
+      System.err.println("ERROR: DVD length is non-positive!");
+    }
+  }
+
+  public String playGUI() throws PlayerException {
+    if (this.getLength() > 0) {
+      StringBuilder output = new StringBuilder();
+      output.append("Playing DVD: ").append(this.getTitle()).append("\n")
+          .append("DVD length: ").append(formatDuration(this.getLength()));
+      return output.toString();
+    } else {
+      throw new PlayerException("ERROR: DVD length is non-positive!");
+    }
+  }
+
+  // Format duration for display
+  public String formatDuration(int length) {
+    int hours = length / 3600;
+    int minutes = (length % 3600) / 60;
+    int seconds = length % 60;
+    return String.format("%02d:%02d:%02d", hours, minutes, seconds);
   }
 }
